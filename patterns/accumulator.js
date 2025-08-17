@@ -22,7 +22,15 @@ export function sumToN(n) {
  * @returns `1` if n is 0
  */
 export function factorial(n) {
-  // TODO
+  if (typeof n !== "number") return NaN;
+  if (n < 0) return undefined;
+  if (n === 0) return 1;
+
+  let product = 1;
+  for (let i = 1; i <= n; i++) {
+    product *= i;
+  }
+  return product;
 }
 
 /**
@@ -32,7 +40,14 @@ export function factorial(n) {
  * @returns `[]` if n is 0 or negative
  */
 export function buildNArray(n) {
-  // TODO
+  if (typeof n !== "number") return null;
+  if (n <= 0) return [];
+
+  let result = [];
+  for (let i = 1; i <= n; i++) {
+    result.push(i);
+  }
+  return result;
 }
 
 /**
@@ -40,7 +55,22 @@ export function buildNArray(n) {
  * @returns {string} the longest string in `strings`
  */
 export function getLongestString(strings) {
-  // TODO
+  // set most to an empty string
+  let most = "";
+
+  //i starts at zero;
+  // the loop runs as long as i is less than the length of strings;
+  // i increments by one
+  for (let i = 0; i < strings.length; i++) {
+    //if strings at i contains more characters than the length of the current string,
+    // replace strings[i] with the current (longer) string
+    if (strings[i].length > most.length) {
+      most = strings[i];
+    }
+  }
+
+  //return the longest string or the string with the most characters
+  return most;
 }
 
 /**
@@ -48,7 +78,17 @@ export function getLongestString(strings) {
  * @returns {number} the number of students present
  */
 export function countPresent(attendance) {
-  // TODO
+  //set count equal to zero
+  let count = 0;
+  //loop through each index if the index number is less than or equal to the length of the array
+  // and if the evaluation of attendance[i]=true, add one to the total count of those present
+  for (let i = 0; i <= attendance.length; i++) {
+    if (attendance[i] === true) {
+      count++;
+    }
+  }
+  //return the final count, after the logic directly above has been evaluated
+  return count;
 }
 
 /**
@@ -62,5 +102,33 @@ export function countPresent(attendance) {
  * @returns `null` if `dna` is not a string
  */
 export function complementDNA(dna) {
-  // TODO
+  // if dna is not equal to type string, return null
+  if (typeof dna !== "string") return null;
+
+  //set cmplmentryString equal to a blank string
+  let cmplmntryString = "";
+
+  //iterate through the string starting with index position zero
+  // keep iterating as long as the index number is less than the string length
+  //set origDNA equal to the string value at index i
+  for (let i = 0; i < dna.length; i++) {
+    let origDNA = dna[i];
+
+    //if the string character at index i in the original string is A, return T
+    //if the string character at index i in the original string is C, return G
+    //if the string character at index i in the original string is G, return c
+    //if the string character at index i in the original string is T, return A
+    if (origDNA === "A") {
+      cmplmntryString += "T";
+    } else if (origDNA === "C") {
+      cmplmntryString += "G";
+    } else if (origDNA === "G") {
+      cmplmntryString += "C";
+    } else if (origDNA === "T") {
+      cmplmntryString += "A";
+    }
+  }
+
+  // return the complementary string populated with the relevant values
+  return cmplmntryString;
 }
